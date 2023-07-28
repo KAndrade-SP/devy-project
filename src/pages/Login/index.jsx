@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { GoogleLogo } from "@phosphor-icons/react";
 
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from '../../services/firebase';
 
 import './styles.scss';
-import { useNavigate } from 'react-router-dom';
+import devyLogo from '../../assets/images/devy-logo.png'
 
 export function Login() {
 
@@ -39,19 +40,17 @@ export function Login() {
   return (
     <div className="container">
 
-      {/* <div className="user">
-        {user.photoURL && <img src={user.photoURL} alt="Foto do usuário" />}
+      <div className="logo">
+        <img src={devyLogo} alt="Logo da aplicação" />
+      </div>
 
-        <strong>{user.displayName}</strong>
-        <small>{user.email}</small>
-      </div> */}
+      <div className="login-content">
+        <h1>Acesse sua conta</h1>
 
-      <h1>Acesse sua conta</h1>
-
-      <span>
-        Utilizando autenticação social, por exemplo, autenticação com a Google você <br />
-        facilita a vida do usuário permitindo utilizar a aplicação sem fazer cadastrado.
-      </span>
+        <span>
+          Utilize uma conta Google para obter acesso completo às funcionalidades da aplicação.
+        </span>
+      </div>    
 
       <button type="button" onClick={signInWithGoogle} className="button">
         <GoogleLogo />
