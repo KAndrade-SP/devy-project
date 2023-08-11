@@ -1,16 +1,47 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import './styles.scss';
 import devyLogo from '../../assets/images/devy-logo.png'
 
 export function Home() {
 
+    useEffect(() => {
+        const scriptIonic = document.createElement('script');
+        const scriptIonicNoModule = document.createElement('script');
+
+        scriptIonic.src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js";
+        scriptIonic.type = "module";
+        scriptIonic.async = true;
+
+        scriptIonicNoModule.src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js";
+        scriptIonicNoModule.noModule = true;
+        scriptIonicNoModule.async = true;
+      
+        document.body.appendChild(scriptIonic);
+        document.body.appendChild(scriptIonicNoModule);
+      
+        return () => {
+          document.body.removeChild(scriptIonic);
+          document.body.removeChild(scriptIonicNoModule);
+        }
+    }, []); 
+    
+    const [isActive, setIsActive] = useState(false);
+
+    const handleMenu = () => {
+        const headerToggle = document.getElementById('header-toggle')
+
+        if(headerToggle){
+            setIsActive(current => !current);
+        } 
+    };
+
     return (
-        <div>
+        <div> 
             <nav className="nav" id="nav">
-                <div className="nav__menu" id="nav-menu">
-                    <div className="nav__close" id="nav-close">
-                        <i className="fa-solid fa-xmark"></i>
+                <div className="nav__menu containerHome" id="nav-menu">
+                    <div onClick={handleMenu} className="nav__close" id="nav-close">
+                        <ion-icon name="close-outline"></ion-icon>
                     </div>
 
                     <div className="nav__data">
@@ -37,20 +68,20 @@ export function Home() {
                 </div>
             </nav>
 
-            <main className="main show-menu" id="main">          
+            <main className={isActive ? "main show-menu" : "main"} id="main">          
                 <header className="header" id="header">
-                    <nav className="header__nav">
+                    <nav className="header__nav containerHome">
                         <a href="#" className="header__logo">
                             DevY
                         </a>
 
-                        <div className="header__toggle" id="header-toggle">
-                            <i className="fa-solid fa-bars fa-lg"></i>
+                        <div onClick={handleMenu} className="header__toggle" id="header-toggle">
+                            <ion-icon name="menu-outline"></ion-icon>
                         </div>
                     </nav>              
                 </header>
 
-                <section className="section" id="home">
+                <section className="section containerHome" id="home">
                     <div className="section__home-content">
                         <div className="home-logo">
                             <div className="content-img-home">
@@ -66,7 +97,7 @@ export function Home() {
                     </div>
                 </section>
 
-                <section className="section" id="favs">
+                <section className="section containerHome" id="favs">
                     <h1>Section 1</h1>
                     <div className="section__favs__content">
                         <div className="fav_images">
@@ -76,7 +107,7 @@ export function Home() {
                 </section>
 
                 <footer className="footer" id="footer">
-                    <nav className="footer__content">
+                    <nav className="footer__content containerHome">
                         <a href="#" className="header__logo">
                             DevY
                         </a>

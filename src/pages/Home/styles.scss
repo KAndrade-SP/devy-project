@@ -1,6 +1,11 @@
-/*=============== REUSABLE CSS CLASSES ===============*/
+  /*=============== REUSABLE CSS CLASSES ===============*/
+  .containerHome {
+    max-width: 1024px;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
 
-.section {
+  .section {
     padding: 4.5rem 0 1rem;
   }
   
@@ -14,7 +19,7 @@
     margin-bottom: -6.75rem;
   }
 
-.section__favs__content {
+  .section__favs__content {
     padding-top: 1.15rem;
     padding-bottom: 1.15rem;
     flex-direction: column;
@@ -22,7 +27,7 @@
   }
 
   /*=============== HEADER & NAV ===============*/
-.nav {
+  .nav {
     background-color: var(--background);
     padding-top: 2rem;
     position: fixed;
@@ -210,3 +215,132 @@
       width: 100%;
     }
   }
+
+  /*=============== BREAKPOINTS ===============*/
+
+  /* For small devices */
+  @media screen and (max-width: 320px) {
+    .container {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+    .section__home-content {
+      margin-bottom: -5.55rem;
+
+      .home-logo-p {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        column-gap: 1rem;
+      }
+
+      .p-home {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        width: 46%;
+        margin-right: -1rem;
+        @media (max-width: 620px) {
+          width: 100%;
+        }
+      }
+    }
+    .section__favs__content {
+      margin-bottom: -5.55rem;
+    }
+    .footer {
+      margin-top: 6rem;
+    }
+  }
+
+  /* For small to medium devices */
+  @media screen and (min-width: 320px) and (max-width: 620px) {
+    .section__home-content {
+      margin-bottom: -5.55rem;
+
+      .home-logo-p {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        column-gap: 1rem;
+      }
+
+      .p-home {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        width: 46%;
+        @media (max-width: 620px) {
+          width: 100%;
+        }
+      }
+    }
+
+    .section__favs__content {
+      margin-bottom: -5.55rem;
+    }
+    .footer {
+      margin-top: 6rem;
+    }
+  }
+
+  /* For medium devices */
+  @media screen and (min-width: 620px) and (max-width: 1024px) {
+    .section__home-content {
+      margin-bottom: -6rem;
+    }
+    .section__favs__content {
+      margin-bottom: -6rem;
+    }
+    .footer {
+      margin-top: 7rem;
+    }
+  }
+
+  @media screen and (min-width: 767px) {
+    .show-menu {
+      transform: translate(40%);
+    }
+  }
+
+  /* For large devices */
+  @media screen and (min-width: 1024px) {
+    .containerHome {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section {
+      padding: 7rem 0 0rem;
+    }
+    .header__nav {
+      height: calc(var(--header-height) + 1.5rem);
+    }
+    .nav__shape {
+      width: 350px;
+      height: 350px;
+    }
+    .nav__mask {
+      width: 100px;
+      height: 100px;
+      border-radius: 2rem;
+      margin-bottom: 2rem;
+    }
+    .nav__img {
+      width: 80px;
+    }
+    .nav__link {
+      font-size: var(--normal-font-size);
+    }
+    .nav__link__i {
+      font-size: 1.25rem;
+    }
+  }
+  
