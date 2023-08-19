@@ -1,8 +1,14 @@
-  /*=============== REUSABLE CSS CLASSES ===============*/
+  /*=============== SECTION CLASSES ===============*/
   .containerHome {
     max-width: 1024px;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
+  }
+
+  .main {
+    position: relative;
+    background-color: var(--background);
+    transition: .4s;
   }
 
   .section {
@@ -26,9 +32,27 @@
     margin-bottom: -6.75rem;
   }
 
-  /*=============== HEADER & NAV ===============*/
-  .nav {
+  .footer {
+    width: 100%;
     background-color: var(--background);
+    border-top: 1px solid var(--text);
+    margin-top: 8rem;
+    bottom: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+  }
+  
+  .footer__content {
+    height: var(--footer-height);
+    display: flex;
+    justify-content: center;
+    column-gap: 0.25rem;
+    align-items: center;
+  }
+
+  /*=============== NAV & HEADER ===============*/
+  .nav {
+    background-color: var(--background-light);
     padding-top: 2rem;
     position: fixed;
     top: 0;
@@ -74,7 +98,7 @@
   }
   
   .nav__link {
-    color: var(--text);
+    color: var(--caption);
     display: inline-flex;
     align-items: center;
     column-gap: 1rem;
@@ -83,35 +107,13 @@
     transition: .3s;
   }
   
-  .nav__link-table {
-    color: var(--text);
-    display: inline-flex;
-    align-items: center;
-    column-gap: 0.50rem;
-    font-size: var(--small-font-size);
-    transition: .3s;
-  }
-  
-  .nav__link ion-icon {
-    font-size: 1.15rem;
-  }
-  
-  .nav__link-table ion-icon {
-    font-size: 1.15rem;
-  }
-  
   .nav__link:hover {
     color: var(--text);
   }
-  
-  .nav__link-table:hover {
+
+  /* Active link */
+  .active-link {
     color: var(--text);
-  }
-  
-  .main {
-    position: relative;
-    background-color: var(--background);
-    transition: .4s;
   }
   
   .header {
@@ -140,26 +142,8 @@
   }
   
   .header__toggle {
-    font-size: 1.15rem;
+    font-size: 2rem;
     cursor: pointer;
-  }
-  
-  .footer {
-    width: 100%;
-    background-color: var(--background);
-    border-top: 1px solid var(--text);
-    margin-top: 8rem;
-    bottom: 0;
-    left: 0;
-    z-index: var(--z-fixed);
-  }
-  
-  .footer__content {
-    height: var(--footer-height);
-    display: flex;
-    justify-content: center;
-    column-gap: 0.50rem;
-    align-items: center;
   }
   
   /* Show menu */
@@ -170,11 +154,6 @@
   /* Change background header */
   .scroll-header {
     box-shadow: 0 1px 4px rgba(40, 37, 37, 0.1);
-  }
-  
-  /* Active link */
-  .active-link {
-    color: var(--text);
   }
   
   /*=============== HOME ===============*/
@@ -192,7 +171,13 @@
     margin: 0;
     padding: 0;
     align-items: center;
+    justify-content: center;
     column-gap: 1rem;
+
+    >img {
+      width: 200px;
+      height: 200px;
+    }
   }
   
   .content-img-home {
@@ -208,6 +193,7 @@
   }
   
   .p-home {
+    text-align: center;
     position: relative;
     float: right;
     width: 46%;

@@ -25,7 +25,7 @@ export function Home() {
           document.body.removeChild(scriptIonicNoModule);
         }
     }, []); 
-    
+
     const [isActive, setIsActive] = useState(false);
 
     const handleMenu = () => {
@@ -37,7 +37,7 @@ export function Home() {
     };
 
     return (
-        <div> 
+        <div>
             <nav className="nav" id="nav">
                 <div className="nav__menu containerHome" id="nav-menu">
                     <div onClick={handleMenu} className="nav__close" id="nav-close">
@@ -52,14 +52,14 @@ export function Home() {
 
                     <ul className="nav__list">
                         <li className="nav__item">
-                            <a href="#home" className="nav__link active-link">
+                            <a href="#" className="nav__link active-link">
                                 <ion-icon name="home"></ion-icon>
                                 <p>Início</p>
                             </a>
                         </li>                      
 
                         <li className="nav__item">
-                            <a href="#favs" className="nav__link">
+                            <a href="#" className="nav__link">
                                 <ion-icon name="heart"></ion-icon>
                                 Section 1
                             </a>
@@ -67,7 +67,7 @@ export function Home() {
                     </ul>
                 </div>
             </nav>
-
+            
             <main className={isActive ? "main show-menu" : "main"} id="main">          
                 <header className="header" id="header">
                     <nav className="header__nav containerHome">
@@ -88,7 +88,6 @@ export function Home() {
                                 <div className="home-logo-p">
                                     <img src={devyLogo} alt="Logo da aplicação" />
                                     <div className="p-home">
-                                        <h2>DevY</h2>
                                         <p>Slogan do programa.</p>
                                     </div>
                                 </div>

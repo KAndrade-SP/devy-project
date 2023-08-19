@@ -12,7 +12,12 @@
     --caption: hsl(240, 6%, 58%);
     --gray: hsl(240, 9%, 89%);
     --background: hsl(240, 5%, 7.5%);
-    --background-light: rgba(255, 255, 255, 0.05);
+    --background-light: hsl(240, 5%, 10.5%);
+
+    --first-color: hsl(248, 74%, 58%);
+    --black-color: hsl(248, 24%, 10%);
+    --white-color: #fff;
+    --body-color: hsl(248, 100%, 99%);
 
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
