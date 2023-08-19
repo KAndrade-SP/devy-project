@@ -1,0 +1,11 @@
+.background {
+    background-color: var(--background);
+}
+
+/* For large devices */
+@media screen and (min-width: 1024px) {
+    .container-nav {
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
