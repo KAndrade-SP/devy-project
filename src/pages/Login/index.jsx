@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { GoogleLogo } from "@phosphor-icons/react";
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { GoogleLogo } from "@phosphor-icons/react"
 
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from '../../services/firebase';
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { auth } from '../../services/firebase'
 
-import './styles.scss';
+import './styles.scss'
 import devyLogo from '../../assets/images/devy-logo.png'
 
 export function Login() {
 
   const navigate = useNavigate()
-
-  //Verifica mudança de estado de usuario, se:
-  //- user for verdadeiro, será direcionado para Home.
+  
   useEffect(() => {
     let isMounted = true
 
@@ -23,24 +21,24 @@ export function Login() {
     return () => { isMounted = false }
   }, [])
 
-  const [user, setUser] = useState();
+  const [user, setUser] = useState()
 
   function signInWithGoogle() {
-    const provider = new GoogleAuthProvider();
+    const provider = new GoogleAuthProvider()
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        setUser(result.user);
+        setUser(result.user)
 
       }).catch((error) => {
-        console.log(error);
+        console.log(error)
       });
   }
 
   return (
-    <div className="container">
+    <div className="container-login">
 
-      <div className="logo">
+      <div className="logo-login">
         <img src={devyLogo} alt="Logo da aplicação" />
       </div>
 
@@ -52,7 +50,7 @@ export function Login() {
         </span>
       </div>    
 
-      <button type="button" onClick={signInWithGoogle} className="button">
+      <button type="button" onClick={signInWithGoogle} className="button-login">
         <GoogleLogo />
         Entrar com Google
       </button>

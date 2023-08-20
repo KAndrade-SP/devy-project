@@ -1,11 +1,35 @@
-.background {
-    background-color: var(--background);
+.nav-link {
+  color: var(--caption);
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  transition: .3s;
+  cursor: pointer;
 }
 
-/* For large devices */
-@media screen and (min-width: 1024px) {
-    .container-nav {
-      margin-left: auto;
-      margin-right: auto;
-    }
+.nav-link:hover {
+  color: var(--text);
 }
+
+/* Active link */
+.active-link {
+  color: var(--text);
+}
+
+.nav-button {
+  height: 3rem;
+
+  color: var(--text);
+  background: none;
+  font-size: 18px;
+
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(to right, var(--gray-blue), var(--white)) 1;
+
+  transition: background-color .3s;
+
+  &:hover {
+    background-color: var(--background-light);
+  }
+}
+

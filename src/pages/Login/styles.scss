@@ -1,77 +1,76 @@
-.container {
-    height: 100vh;
+.container-login {
+  height: 100vh;
   
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  .login-content {
+    h1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-    .login-content {
-      h1 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+    span {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      color: var(--caption);
 
-      span {
-        display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        color: var(--caption);
-
-        margin-top: 1rem;
-      }
+      margin-top: 1rem;
     }
   }
+}
   
-.button {
-    height: 3.5rem;
-    width: 40rem;
+.button-login {
+  height: 3.5rem;
+  width: 40rem;
   
-    color: var(--text);
-    background: none;
-    font-size: 18px;
+  color: var(--text);
+  background: none;
+  font-size: 18px;
   
-    border-width: 2px;
-    border-style: solid;
-    border-image: linear-gradient(to right, var(--primary), var(--gray)) 1;
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(to right, var(--gray-blue), var(--white)) 1;
   
-    margin-top: 2rem;
+  margin-top: 2rem;
   
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
-    >svg {
-      font-size: 24px;
-      margin-right: 0.4rem;
-    }
-  
-    transition: background-color .3s;
-  
-    &:hover {
-      background-color: var(--background-light);
-    }
+  >svg {
+    font-size: 24px;
+    margin-right: 0.4rem;
   }
   
-  .logo {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  transition: background-color .3s;
   
-    >img {
-      width: 300px;
-      height: 300px;
-    }
+  &:hover {
+    background-color: var(--background-light);
   }
+}
+  
+.logo-login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+  >img {
+    width: 300px;
+    height: 300px;
+  }
+}
 
 /*=============== BREAKPOINTS ===============*/
 
 @media screen and (min-width: 220px) and (max-width: 300px) {
-  .container {
+  .container-login {
     margin-left: 1rem;
     margin-right: 1rem;
 
@@ -82,14 +81,14 @@
     }
   }
 
-  .button {
+  .button-login {
     width: 12rem;
     padding-right: 1rem;
     padding-left: 1rem;
     font-size: var(--small-font-size);
   }
 
-  .logo {
+  .logo-login {
     >img {
       width: 250px;
       height: 225px;
@@ -98,7 +97,7 @@
 }
 
 @media screen and (min-width: 300px) and (max-width: 320px) {
-  .container {
+  .container-login {
     margin-left: 1rem;
     margin-right: 1rem;
 
@@ -109,7 +108,7 @@
     }
   }
 
-  .button {
+  .button-login {
     width: 15rem;
     font-size: var(--medium-font-size);
   }
@@ -117,31 +116,31 @@
 
 /* For small to medium devices */
 @media screen and (min-width: 320px) and (max-width: 620px) {
-  .container {
+  .container-login {
     margin-left: 1rem;
     margin-right: 1rem;
   }
 
-  .button {
+  .button-login {
     width: 18rem;
   }
 }
 
 /* For medium devices */
 @media screen and (min-width: 620px) and (max-width: 1024px) {
-  .container {
+  .container-login {
     margin-left: 1rem;
     margin-right: 1rem;
   }
 
-  .button {
+  .button-login {
     width: 30rem;
   }
 }
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
-  .container {
+  .container-login {
     margin-left: auto;
     margin-right: auto;
   }

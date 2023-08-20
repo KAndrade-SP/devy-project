@@ -1,23 +1,23 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap);
 
-/*=============== VARIABLES CSS ===============*/
-:root {
+  /*=============== VARIABLES CSS ===============*/
+  :root {
     --header-height: 3.5rem;
     --footer-height: 5.5rem;
 
     /*========== Colors ==========*/
-    --primary:hsl(233, 100%, 57%); 
-    --text: hsl(0, 0%, 100%);
-    --caption: hsl(240, 6%, 58%);
-    --gray: hsl(240, 9%, 89%);
-    --background: hsl(240, 5%, 7.5%);
-    --background-light: hsl(240, 5%, 10.5%);
+    --main-blue:hsl(233, 100%, 57%);
+    --secondary-blue: hsl(233, 75%, 46%);
+    --light-blue: hsl(233, 100%, 72%);
+    --dark-blue: hsl(233, 75%, 11%);
+    --gray-blue: hsl(233, 39%, 36%);
 
-    --first-color: hsl(248, 74%, 58%);
-    --black-color: hsl(248, 24%, 10%);
-    --white-color: #fff;
-    --body-color: hsl(248, 100%, 99%);
+    --text: hsl(0, 0%, 100%);
+    --caption: hsl(233, 6%, 65%);
+    --white: hsl(233, 9%, 89%);
+    --background: hsl(233, 5%, 7.5%);
+    --background-light: hsl(233, 5%, 12.5%);
 
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
