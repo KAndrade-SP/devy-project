@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { List, X, House, GraduationCap, Question, Info, PaperPlaneTilt, SignOut } from "@phosphor-icons/react"
+import { List, X, House, GraduationCap, Question, Info, PaperPlaneTilt, SignOut, User } from "@phosphor-icons/react"
 
 import { auth } from '../../services/firebase'
 
@@ -8,12 +8,12 @@ import './styles.scss'
 
 const Navbar = () => {
 
+    const ref = useRef(null);
+    const navigate = useNavigate()
+
     const [currentUser, setCurrentUser] = useState()
     const [isLogged, setLogged] = useState(false)
-    const [toggle,setToggle] = useState(false)
-
-    const handleClick = () => setToggle(!toggle)
-    const navigate = useNavigate()
+    const [toggle, setToggle] = useState(false)
 
     useEffect(() => {
         let isMounted = true
@@ -27,14 +27,28 @@ const Navbar = () => {
         return () => { isMounted = false }
     }, [])  
 
+    const outsideClick = (e) => {
+        const element = ref.current;
+        if (toggle && element && !element.contains(e.target)) {
+            setToggle(!toggle)
+        }
+    } 
+
+    const handleClick = () => {
+        setToggle(!toggle)
+    }
+
+    document.addEventListener("mousedown", outsideClick)
+
     const signOut = async () => {
+        setToggle(false)
         await auth.signOut().then(() => {
             navigate("/")
         })
     }
 
     return (
-        <div className='w-full h-[80px] border-b'>
+        <section ref={ref} className='w-full h-[80px] border-b'>
             <div className='max-w-[1024px] mx-5 lg:m-auto w-full h-full flex justify-between items-center md:px-0 px-4'> 
                 
                 <p className='text-lg'>DevY</p>
@@ -50,17 +64,30 @@ const Navbar = () => {
                 </div>
 
                 <div className='hidden md:flex'>
-
                     {
                     isLogged && currentUser ?
-                        <a className='flex justify-end gap-4 items-center cursor-pointer hover:text-[#a0a2ab]'>
-                            <p className='lg:m-auto md:text-sm'>{currentUser.displayName}</p>
-                            <img src={currentUser.photoURL} className='w-[40px] mr-10 lg:m-auto rounded-full'></img>
-                        </a>
+                        <>
+                            <a onClick={handleClick} className='flex justify-end gap-4 items-center cursor-pointer hover:text-[#a0a2ab]'>
+                                <p className='lg:m-auto md:text-sm'>{currentUser.displayName}</p>
+                                <img src={currentUser.photoURL} className='w-[40px] mr-10 lg:m-auto rounded-full'></img>
+                            </a> 
+
+                            <div onClick={handleClick} className={toggle?'absolute rounded-xl dropdown translate-y-20 z-10 w-[150px] px-2':'hidden'}>
+                                <ul>
+                                    <div className='flex pl-4 pt-2 items-center nav-link'>
+                                        <User size={24}/>
+                                        <li className='p-4'>Perfil</li>
+                                    </div>
+                                    <div className='flex pl-4 pt-2 items-center nav-link' onClick={signOut}>
+                                        <SignOut size={24}/>
+                                        <li className='p-4'>Sair</li>
+                                    </div>
+                                </ul>
+                            </div>
+                        </>
                     :
                         <button className='px-8 mr-10 lg:m-auto nav-button'><a href='/login'>Fazer login</a></button>
                     }
-                    
                 </div>
 
                 <div className='md:hidden mr-10' onClick={handleClick}>
@@ -68,7 +95,9 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div className={toggle?'absolute z-10 w-full px-4 md:hidden':'hidden'}>
+            
+
+            <div onClick={handleClick} className={toggle?'absolute z-10 w-full px-4 md:hidden':'hidden'}>
                 <ul>
                     {
                     isLogged && currentUser ?
@@ -124,7 +153,7 @@ const Navbar = () => {
                     </div>
                 </ul>
             </div>
-        </div>
+        </section>
     )
 }
 
