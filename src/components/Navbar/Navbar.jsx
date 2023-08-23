@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { List, X, House, GraduationCap, Question, Info, PaperPlaneTilt, SignOut } from "@phosphor-icons/react"
 
 import { auth } from '../../services/firebase'
@@ -10,19 +11,27 @@ const Navbar = () => {
     const [currentUser, setCurrentUser] = useState()
     const [isLogged, setLogged] = useState(false)
     const [toggle,setToggle] = useState(false)
+
     const handleClick = () => setToggle(!toggle)
+    const navigate = useNavigate()
 
     useEffect(() => {
         let isMounted = true
 
         auth.onAuthStateChanged(user => {
-            if (isMounted && user) { console.log(user) }
+            if (isMounted && user) { console.log(user)} 
             setLogged(true)
             setCurrentUser(user)
         })
 
         return () => { isMounted = false }
     }, [])  
+
+    const signOut = async () => {
+        await auth.signOut().then(() => {
+            navigate("/")
+        })
+    }
 
     return (
         <div className='w-full h-[80px] border-b'>
@@ -97,7 +106,7 @@ const Navbar = () => {
                     
                     {
                     isLogged && currentUser ?
-                        <div className='flex pl-4 pt-2 items-center'>
+                        <div className='flex pl-4 pt-2 items-center' onClick={signOut}>
                             <SignOut size={24}/>
                             <li className='p-4 nav-link'>Sair</li>
                         </div>
