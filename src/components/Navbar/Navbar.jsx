@@ -1,31 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useRef } from 'react'
 import { List, X, House, GraduationCap, Question, Info, PaperPlaneTilt, SignOut, User } from "@phosphor-icons/react"
-
-import { auth } from '../../services/firebase'
 
 import './styles.scss'
 
-const Navbar = () => {
+const Navbar = ({ active, setActive, user, handleLogout }) => {
 
+    const userData = user
     const ref = useRef(null);
-    const navigate = useNavigate()
 
-    const [currentUser, setCurrentUser] = useState()
-    const [isLogged, setLogged] = useState(false)
     const [toggle, setToggle] = useState(false)
-
-    useEffect(() => {
-        let isMounted = true
-
-        auth.onAuthStateChanged(user => {
-            if (isMounted && user) { console.log(user)} 
-            setLogged(true)
-            setCurrentUser(user)
-        })
-
-        return () => { isMounted = false }
-    }, [])  
 
     const outsideClick = (e) => {
         const element = ref.current;
@@ -39,13 +22,6 @@ const Navbar = () => {
     }
 
     document.addEventListener("mousedown", outsideClick)
-
-    const signOut = async () => {
-        setToggle(false)
-        await auth.signOut().then(() => {
-            navigate("/")
-        })
-    }
 
     return (
         <section ref={ref} className='w-full h-[80px] border-b'>
@@ -64,12 +40,11 @@ const Navbar = () => {
                 </div>
 
                 <div className='hidden md:flex'>
-                    {
-                    isLogged && currentUser ?
+                    { userData ? 
                         <>
                             <a onClick={handleClick} className='flex justify-end gap-4 items-center cursor-pointer hover:text-[#a0a2ab]'>
-                                <p className='lg:m-auto md:text-sm'>{currentUser.displayName}</p>
-                                <img src={currentUser.photoURL} className='w-[40px] mr-10 lg:m-auto rounded-full'></img>
+                                <p className='lg:m-auto md:text-sm'>{userData.displayName}</p>
+                                <img src={userData.photoURL} className='w-[40px] mr-10 lg:m-auto rounded-full'></img>
                             </a> 
 
                             <div onClick={handleClick} className={toggle?'absolute rounded-xl dropdown translate-y-20 z-10 w-[150px] px-2':'hidden'}>
@@ -78,7 +53,7 @@ const Navbar = () => {
                                         <User size={24}/>
                                         <li className='p-4'>Perfil</li>
                                     </div>
-                                    <div className='flex pl-4 pt-2 items-center nav-link' onClick={signOut}>
+                                    <div className='flex pl-4 pt-2 items-center nav-link' onClick={handleLogout}>
                                         <SignOut size={24}/>
                                         <li className='p-4'>Sair</li>
                                     </div>
@@ -99,10 +74,9 @@ const Navbar = () => {
 
             <div onClick={handleClick} className={toggle?'absolute z-10 w-full px-4 md:hidden':'hidden'}>
                 <ul>
-                    {
-                    isLogged && currentUser ?
+                    { userData ?
                         <a className='flex pl-4 pt-2 items-center'>
-                            <img src={currentUser.photoURL} className='w-[24px] rounded-full'></img>
+                            <img src={user.photoURL} className='w-[24px] rounded-full'></img>
                             <li className='p-4 nav-link'>Perfil</li>
                         </a>
                     :
@@ -133,9 +107,8 @@ const Navbar = () => {
                         <li className='p-4 nav-link'>Contatos</li>
                     </div>
                     
-                    {
-                    isLogged && currentUser ?
-                        <div className='flex pl-4 pt-2 items-center' onClick={signOut}>
+                    { userData ?
+                        <div className='flex pl-4 pt-2 items-center' onClick={handleLogout}>
                             <SignOut size={24}/>
                             <li className='p-4 nav-link'>Sair</li>
                         </div>
@@ -144,8 +117,7 @@ const Navbar = () => {
                     }
                     
                     <div className='flex flex-col my-2 gap-4'>
-                        {
-                        isLogged && currentUser ?
+                        { userData ?
                             <></>
                         :
                             <button className='px-8 nav-button'><a href='/login'>Fazer login</a></button>
