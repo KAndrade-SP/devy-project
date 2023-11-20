@@ -42,6 +42,7 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                 <div className='hidden md:flex'>
                     { userData ? 
                         <>
+                            {console.log(userData.photoURL)}
                             <a onClick={handleClick} className='flex justify-end gap-4 items-center cursor-pointer hover:text-[#a0a2ab]'>
                                 <p className='lg:m-auto md:text-sm'>{userData.displayName}</p>
                                 <img src={userData.photoURL} className='w-[40px] mr-10 lg:m-auto rounded-full'></img>
