@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ReactTagInput from "@pathofdev/react-tag-input";
-import "@pathofdev/react-tag-input/build/index.css";
+
+
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import {
   addDoc,
@@ -26,12 +26,12 @@ const initialState = {
 };
 
 const categoryOption = [
-  "IoT",
-  "Technology",
-  "Cloud Computing",
-  "Front-end Development",
-  "Back-end Development",
-  "AI Technology",
+  "IoT - Internet das Coisas",
+  "Tecnologia Geral",
+  "Computação em Nuvem",
+  "Desenvolvimento Front-end",
+  "Desenvolvimento Back-end",
+  "Inteligência Artificial",
 ];
 
 const AddEditPost = ({ user, setActive }) => {
@@ -58,10 +58,10 @@ const AddEditPost = ({ user, setActive }) => {
           setProgress(progress);
           switch (snapshot.state) {
             case "paused":
-              console.log("Upload is paused");
+              console.log("Upload pausado");
               break;
             case "running":
-              console.log("Upload is running");
+              console.log("Realizando upload");
               break;
             default:
               break;
@@ -72,7 +72,7 @@ const AddEditPost = ({ user, setActive }) => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-            toast.info("Image upload to firebase successfully");
+            toast.info("Imagem enviada com sucesso!");
             setForm((prev) => ({ ...prev, imgUrl: downloadUrl }));
           });
         }
@@ -123,7 +123,7 @@ const AddEditPost = ({ user, setActive }) => {
             author: user.displayName,
             userId: user.uid,
           });
-          toast.success("Blog created successfully");
+          toast.success("Postagem realizada com sucesso!");
         } catch (err) {
           console.log(err);
         }
@@ -135,80 +135,80 @@ const AddEditPost = ({ user, setActive }) => {
             author: user.displayName,
             userId: user.uid,
           });
-          toast.success("Blog updated successfully");
+          toast.success("Post atualizado com sucesso!");
         } catch (err) {
           console.log(err);
         }
       }
     } else {
-      return toast.error("All fields are mandatory to fill");
+      return toast.error("Todos os campos devem ser preenchidos.");
     }
 
     navigate("/");
   };
 
   return (
-    <div className="container-fluid mb-4">
-      <div className="container">
-        <div className="col-12">
-          <div className="text-center heading py-2">
-            {id ? "Update Post" : "Create Post"}
+    <section className="max-w-[1024px] mx-5 lg:m-auto w-full h-full items-center md:px-0">
+      <div className="">
+        <div className="">
+          <div className="">
+            {id ? "Atualizar post" : "Criar post"}
           </div>
         </div>
-        <div className="row h-100 justify-content-center align-items-center">
-          <div className="col-10 col-md-8 col-lg-6">
-            <form className="row post-form" onSubmit={handleSubmit}>
-              <div className="col-12 py-3">
+        <div className="">
+          <div className="">
+            <form className="" onSubmit={handleSubmit}>
+              <div className="">
                 <input
                   type="text"
-                  className="form-control input-text-box"
-                  placeholder="Title"
+                  className=""
+                  placeholder="Título"
                   name="title"
                   value={title}
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-12 py-3">
-                <ReactTagInput
+              <div className="">
+                {/* <ReactTagInput
                   tags={tags}
                   placeholder="Tags"
                   onChange={handleTags}
-                />
+                /> */}
               </div>
-              <div className="col-12 py-3">
-                <p className="trending">Is it trending blog ?</p>
-                <div className="form-check-inline mx-2">
+              <div className="">
+                <p className="">É um trending post?</p>
+                <div className="">
                   <input
                     type="radio"
-                    className="form-check-input"
-                    value="yes"
+                    className=""
+                    value="Sim"
                     name="radioOption"
-                    checked={trending === "yes"}
+                    checked={trending === "Sim"}
                     onChange={handleTrending}
                   />
-                  <label htmlFor="radioOption" className="form-check-label">
-                    Yes&nbsp;
+                  <label htmlFor="radioOption" className="">
+                    Sim&nbsp;
                   </label>
                   <input
                     type="radio"
-                    className="form-check-input"
-                    value="no"
+                    className=""
+                    value="Não"
                     name="radioOption"
-                    checked={trending === "no"}
+                    checked={trending === "Não"}
                     onChange={handleTrending}
                   />
-                  <label htmlFor="radioOption" className="form-check-label">
-                    No
+                  <label htmlFor="radioOption" className="">
+                    Não
                   </label>
                 </div>
               </div>
-              <div className="col-12 py-3">
+              <div className="">
                 <select
                   value={category}
                   onChange={onCategoryChange}
-                  className="catg-dropdown"
+                  className=""
                 >
-                  <option>Please select category</option>
+                  <option>Selecionar categoria</option>
                   {categoryOption.map((option, index) => (
                     <option value={option || ""} key={index}>
                       {option}
@@ -216,36 +216,36 @@ const AddEditPost = ({ user, setActive }) => {
                   ))}
                 </select>
               </div>
-              <div className="col-12 py-3">
+              <div className="">
                 <textarea
-                  className="form-control description-box"
-                  placeholder="Description"
+                  className=""
+                  placeholder="Descrição"
                   value={description}
                   name="description"
                   onChange={handleChange}
                 />
               </div>
-              <div className="mb-3">
+              <div className="">
                 <input
                   type="file"
-                  className="form-control"
+                  className=""
                   onChange={(e) => setFile(e.target.files[0])}
                 />
               </div>
-              <div className="col-12 py-3 text-center">
+              <div className="">
                 <button
-                  className="btn btn-add"
+                  className=""
                   type="submit"
                   disabled={progress !== null && progress < 100}
                 >
-                  {id ? "Update" : "Submit"}
+                  {id ? "Atualizar" : "Enviar"}
                 </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

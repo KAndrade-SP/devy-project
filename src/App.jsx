@@ -4,10 +4,12 @@ import { auth } from "./services/firebase";
 import { signOut } from "firebase/auth";
 
 import Navbar from "./components/Navbar/Navbar";
+import AddEditPost from "./pages/AddEditPost/AddEditPost";
 import { Login } from './pages/Login/index';
 import { Home } from "./pages/Home";
 
 import './styles/global.scss';
+
 
 export default function App() {
 
@@ -46,6 +48,18 @@ export default function App() {
         <Route
           path="/"
           element={<Home setActive={setActive} active={active} user={user} />}
+        />
+        <Route
+          path="/create"
+          element={ 
+            <AddEditPost user={user} />
+          }
+        />
+        <Route
+          path="/update/:id"
+          element={ 
+            <AddEditPost user={user} setActive={setActive} /> 
+          }
         />
         <Route 
           path="/login" 
