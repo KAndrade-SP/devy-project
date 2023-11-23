@@ -1,10 +1,15 @@
 /*=============== GOOGLE FONTS ===============*/
-@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
   /*=============== VARIABLES CSS ===============*/
   :root {
     --header-height: 3.5rem;
     --footer-height: 5.5rem;
+
+    /*===== Font weight =====*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
 
     /*========== Colors ==========*/
     --main-blue:hsl(233, 100%, 57%);
@@ -14,7 +19,7 @@
     --gray-blue: hsl(233, 39%, 36%);
 
     --text: hsl(0, 0%, 100%);
-    --caption: hsl(233, 6%, 65%);
+    --caption: hsl(233, 6%, 75%);
     --white: hsl(233, 9%, 89%);
     --background: hsl(233, 5%, 7.5%);
     --background-light: hsl(233, 5%, 12.5%);
@@ -22,9 +27,20 @@
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
     --body-font: 'Poppins', sans-serif;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
     --big-font-size: 1.25rem;
-    --normal-font-size: .930rem;
-    --small-font-size: .810rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+
+    /*===== Margins =====*/
+    --mb-1: .5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+    --mb-5: 2.5rem;
 
     /*========== z index ==========*/
     --z-fixed: 100;
@@ -78,3 +94,35 @@
     max-width: 100%;
     height: auto;
   }
+
+  /*===== CLASS CSS ===== */
+.section {
+  padding: 2rem 0 1rem;
+}
+
+.section-title {
+  font-size: var(--h1-font-size);
+  color: var(--text);
+  margin-bottom: var(--mb-3);
+  text-align: center;
+}
+
+.section-subtitle {
+  display: block;
+  font-size: var(--small-font-size);
+  color: var(--caption);
+  text-align: center;
+  font-weight: var(--font-bold);
+  margin-bottom: .25rem;
+}
+
+/*===== LAYOUT =====*/
+.bd-grid {
+  max-width: 1024px;
+  display: grid;
+  grid-template-columns: 100%;
+  column-gap: 2rem;
+  width: calc(100% - 2rem);
+  margin-left: var(--mb-2);
+  margin-right: var(--mb-2);
+}
