@@ -64,10 +64,10 @@ $color2: hsl(233, 39%, 36%);
     color: var(--background);
     font-weight: var(--font-medium);
     font-size: var(--normal-font-size);
-}
 
-.post__dropdown:hover {
-    background-color: hsl(233, 9%, 79%);
+    &:hover {
+      background-color: hsl(233, 9%, 79%);
+    }
 }
 
 .post__area {
@@ -82,19 +82,33 @@ $color2: hsl(233, 39%, 36%);
     border-radius: .5rem;
 }
 
-.post__upload-button {
-    width: 100%;
-    outline: none;
-    border: none;
-    height: 3.15rem;
-    padding: .625rem;
-    color: var(--background);
-    font-weight: var(--font-medium);
-    background-color: var(--white);
-    font-size: var(--normal-font-size);
-    border-radius: .5rem;
+.post__upload-area {
+    &:hover {
+      background-color: var(--background-light);
+    }
 }
 
-.post__upload-button:hover {
-    background-color: hsl(233, 9%, 79%);
+.post__upload-text {
+  font-size: var(--smaller-font-size);
+}
+
+.post__upload-button {
+    width: 100%;
+    height: 3.15rem;
+    padding: .625rem;
+    border-width: 2px;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--gray-blue), var(--white)) 1;
+  
+    transition: background-color .3s;
+  
+    &:hover {
+      background-color: var(--background-light);
+    }
+}
+
+@media screen and (min-width: 620px) {
+  .post__upload-text {
+    font-size: var(--normal-font-size);
+  }
 }

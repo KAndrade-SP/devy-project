@@ -54,7 +54,7 @@ const AddEditPost = ({ user, setActive }) => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
+          console.log("Upload está " + progress + "% completo");
           setProgress(progress);
           switch (snapshot.state) {
             case "paused":
@@ -153,12 +153,12 @@ const AddEditPost = ({ user, setActive }) => {
         <h2 className="section-title">{id ? "Atualizar post" : "Criar post"}</h2>
       </section>
 
-      <div className="mb-2 bd-grid">
+      <div className="max-w-[1024px] mx-5 lg:m-auto mb-2 items-center md:px-0">
           <form className="post__form" onSubmit={handleSubmit}>
               <div className="post__inputs">
                   <input
                     type="text"
-                    className="post__input mb-3"
+                    className="post__input mb-4"
                     placeholder="Título"
                     name="title"
                     value={title}
@@ -194,11 +194,11 @@ const AddEditPost = ({ user, setActive }) => {
                   </div>
               </div>
 
-              {/* <div className="">
-                <ReactTagInput
-                      tags={tags}
-                      placeholder="Tags"
-                      onChange={handleTags}
+              {/* <div className="post__input-tag mb-4">
+                <TagsInput
+                  value={tags}
+                  placeholder="Tags"
+                  onChange={handleTags}
                 />
               </div> */}
 
@@ -208,7 +208,7 @@ const AddEditPost = ({ user, setActive }) => {
                 value={category}
                 onChange={onCategoryChange}
               >
-                <option selected>Selecionar categoria</option>
+                <option defaultValue>Selecionar categoria</option>
                 {categoryOption.map((option, index) => (
                   <option value={option || ""} key={index}>
                     {option}
@@ -218,7 +218,7 @@ const AddEditPost = ({ user, setActive }) => {
 
               <label 
                 htmlFor="message" 
-                className="block mb-2">
+                className="block mb-4">
                 Descrição
               </label>
               <textarea 
@@ -231,32 +231,30 @@ const AddEditPost = ({ user, setActive }) => {
                 onChange={handleChange}
               />
 
-              <div className="flex items-center justify-center w-full">
+              <div className="mb-4 flex items-center justify-center w-full">
                   <label 
                     htmlFor="file" 
-                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                    className="post__upload-area flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer"
                   >
-                      <div 
-                        className="flex flex-col items-center justify-center pt-5 pb-6"
-                      >
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6 pr-2 pl-2">
                           <svg 
-                            className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" 
+                            className="w-8 h-8 mb-4" 
                             aria-hidden="true" 
                             xmlns="http://www.w3.org/2000/svg" 
                             fill="none" 
                             viewBox="0 0 20 16">
                               <path 
                                 stroke="currentColor" 
-                                stroke-linecap="round" 
-                                stroke-linejoin="round" 
-                                stroke-width="2" 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                strokeWidth="2" 
                                 d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                               />
                           </svg>
-                          <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                          <p className="post__upload-text mb-2 text-center">
                             <span className="font-semibold">Clique para escolher uma imagem</span> ou arraste e solte
                           </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                          <p className="post__upload-text text-center">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                       </div>
                       <input 
                         id="file" 
@@ -267,9 +265,9 @@ const AddEditPost = ({ user, setActive }) => {
                   </label>
               </div>
 
-              <div className="">
+              <div>
                 <button
-                  className=""
+                  className="post__upload-button"
                   type="submit"
                   disabled={progress !== null && progress < 100}
                 >
