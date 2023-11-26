@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import React, { useState, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { TagsInput } from "react-tag-input-component"
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import {
   addDoc,
   collection,
@@ -9,10 +9,10 @@ import {
   serverTimestamp,
   doc,
   updateDoc,
-} from "firebase/firestore";
-import { toast } from "react-toastify";
+} from "firebase/firestore"
+import { toast } from "react-toastify"
 
-import { db, storage } from "../../services/firebase";
+import { db, storage } from "../../services/firebase"
 import './styles.scss'
 
 const initialState = {
@@ -23,7 +23,7 @@ const initialState = {
   description: "",
   comments: [],
   likes: []
-};
+}
 
 const categoryOption = [
   "IoT - Internet das Coisas",
@@ -32,88 +32,90 @@ const categoryOption = [
   "Desenvolvimento Front-end",
   "Desenvolvimento Back-end",
   "Inteligência Artificial",
-];
+]
 
 const AddEditPost = ({ user, setActive }) => {
-  const [form, setForm] = useState(initialState);
-  const [file, setFile] = useState(null);
-  const [progress, setProgress] = useState(null);
 
-  const { id } = useParams();
-
-  const navigate = useNavigate();
-
-  const { title, tags, category, trending, description } = form;
+  const [form, setForm] = useState(initialState)
+  const [file, setFile] = useState(null)
+  const [progress, setProgress] = useState(null)
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const { title, tags, category, trending, description } = form
 
   useEffect(() => {
     const uploadFile = () => {
-      const storageRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      const storageRef = ref(storage, file.name)
+      const uploadTask = uploadBytesResumable(storageRef, file)
+
       uploadTask.on(
         "state_changed",
         (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload está " + progress + "% completo");
-          setProgress(progress);
+
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          
+          console.log("Upload está " + progress + "% completo")
+          
+          setProgress(progress)
+
           switch (snapshot.state) {
             case "paused":
-              console.log("Upload pausado");
-              break;
+              console.log("Upload pausado")
+              break
             case "running":
-              console.log("Realizando upload");
-              break;
+              console.log("Realizando upload")
+              break
             default:
-              break;
+              break
           }
         },
         (error) => {
-          console.log(error);
+          console.log(error)
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-            toast.info("Imagem enviada com sucesso!");
-            setForm((prev) => ({ ...prev, imgUrl: downloadUrl }));
-          });
+            toast.info("Imagem enviada com sucesso!")
+            setForm((prev) => ({ ...prev, imgUrl: downloadUrl }))
+          })
         }
-      );
-    };
-
-    file && uploadFile();
-  }, [file]);
+      )
+    }
+    file && uploadFile()
+  }, [file])
 
   useEffect(() => {
-    id && getPostDetail();
+    id && getPostDetail()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [id])
 
   const getPostDetail = async () => {
-    const docRef = doc(db, "posts", id);
-    const snapshot = await getDoc(docRef);
+    const docRef = doc(db, "posts", id)
+    const snapshot = await getDoc(docRef)
     if (snapshot.exists()) {
-      setForm({ ...snapshot.data() });
+      setForm({ ...snapshot.data() })
     }
-    setActive(null);
+    setActive(null)
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value })
   };
 
   const handleTags = (tags) => {
-    setForm({ ...form, tags });
+    setForm({ ...form, tags })
   };
 
   const handleTrending = (e) => {
-    setForm({ ...form, trending: e.target.value });
+    setForm({ ...form, trending: e.target.value })
   };
 
   const onCategoryChange = (e) => {
-    setForm({ ...form, category: e.target.value });
+    setForm({ ...form, category: e.target.value })
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (category && tags && title && description && trending) {
       if (!id) {
         try {
@@ -123,9 +125,9 @@ const AddEditPost = ({ user, setActive }) => {
             author: user.displayName,
             userId: user.uid,
           });
-          toast.success("Postagem realizada com sucesso!");
+          toast.success("Postagem realizada com sucesso!")
         } catch (err) {
-          console.log(err);
+          console.log(err)
         }
       } else {
         try {
@@ -135,16 +137,15 @@ const AddEditPost = ({ user, setActive }) => {
             author: user.displayName,
             userId: user.uid,
           });
-          toast.success("Post atualizado com sucesso!");
+          toast.success("Post atualizado com sucesso!")
         } catch (err) {
-          console.log(err);
+          console.log(err)
         }
       }
     } else {
-      return toast.error("Todos os campos devem ser preenchidos.");
+      return toast.error("Todos os campos devem ser preenchidos.")
     }
-
-    navigate("/");
+    navigate("/")
   };
 
   return (
@@ -194,13 +195,13 @@ const AddEditPost = ({ user, setActive }) => {
                   </div>
               </div>
 
-              {/* <div className="post__input-tag mb-4">
+              <div className="post__input-tag mb-4">
                 <TagsInput
                   value={tags}
-                  placeholder="Tags"
+                  placeHolder="Tags"
                   onChange={handleTags}
                 />
-              </div> */}
+              </div>
 
               <select 
                 id="countries" 

@@ -16,7 +16,7 @@ export function Login() {
     let isMounted = true
 
     auth.onAuthStateChanged(user => {
-      if (isMounted && user) { navigate("/") } else navigate("/login")
+      if (isMounted && user) { navigate("/") }
     })
     return () => { isMounted = false }
   }, [])
@@ -29,10 +29,9 @@ export function Login() {
     signInWithPopup(auth, provider)
       .then((result) => {
         setUser(result.user)
-
       }).catch((error) => {
         console.log(error)
-      });
+      })
   }
 
   return (

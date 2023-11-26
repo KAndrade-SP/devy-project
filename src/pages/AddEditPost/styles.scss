@@ -13,6 +13,13 @@ $color2: hsl(233, 39%, 36%);
     border-radius: .5rem;
 }
 
+.rti--container {
+  color: var(--background);
+  --rti-radius: .5rem;
+  --rti-s: var(--normal-font-size) !important; 
+  --rti-tag-remove: var(--background) !important;
+}
+
 .radio-label {
     color: var(--white);
     font-family: var(--body-font);

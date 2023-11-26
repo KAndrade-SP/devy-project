@@ -1,48 +1,48 @@
-import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
-import { auth } from "./services/firebase";
-import { signOut } from "firebase/auth";
+import { useState, useEffect } from "react"
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
+import { auth } from "./services/firebase"
+import { signOut } from "firebase/auth"
+import { matchPath } from 'react-router'
 
-import Navbar from "./components/Navbar/Navbar";
-import AddEditPost from "./pages/AddEditPost/AddEditPost";
-import { Login } from './pages/Login/index';
-import { Home } from "./pages/Home";
+import Navbar from "./components/Navbar/Navbar"
+import AddEditPost from "./pages/AddEditPost/AddEditPost"
+import { Login } from './pages/Login/index'
+import { Home } from "./pages/Home"
 
-import './styles/global.scss';
+import './styles/global.scss'
 
 export default function App() {
 
-  const [active, setActive] = useState("home");
-  const [user, setUser] = useState(null);
+  const [active, setActive] = useState("home")
+  const [user, setUser] = useState(null)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        setUser(authUser);
+        setUser(authUser)
       } else {
-        setUser(null);
+        setUser(null)
       }
-    });
-  }, []);
+    })
+  }, [])
 
   const handleLogout = () => {
     signOut(auth).then(() => {
-      setUser(null);
-      setActive("login");
-      navigate("/login");
-    });
-  };
+      setUser(null)
+      setActive("login")
+    })
+  }
 
   return (
     <div className="App">
-      <Navbar
+      {user || !!matchPath("/", location.pathname) ? <Navbar
         setActive={setActive}
         active={active}
         user={user}
         handleLogout={handleLogout}
-      />
+      /> : <></>}
       <Routes>
         <Route
           path="/"
@@ -51,7 +51,7 @@ export default function App() {
         <Route
           path="/create"
           element={ 
-            <AddEditPost user={user} />
+            user ? <AddEditPost user={user} /> : <Navigate to="/" />
           }
         />
         <Route
