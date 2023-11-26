@@ -35,7 +35,6 @@ const categoryOption = [
 ]
 
 const AddEditPost = ({ user, setActive }) => {
-
   const [form, setForm] = useState(initialState)
   const [file, setFile] = useState(null)
   const [progress, setProgress] = useState(null)
@@ -96,23 +95,23 @@ const AddEditPost = ({ user, setActive }) => {
       setForm({ ...snapshot.data() })
     }
     setActive(null)
-  };
+  }
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
-  };
+  }
 
   const handleTags = (tags) => {
     setForm({ ...form, tags })
-  };
+  }
 
   const handleTrending = (e) => {
     setForm({ ...form, trending: e.target.value })
-  };
+  }
 
   const onCategoryChange = (e) => {
     setForm({ ...form, category: e.target.value })
-  };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -146,7 +145,7 @@ const AddEditPost = ({ user, setActive }) => {
       return toast.error("Todos os campos devem ser preenchidos.")
     }
     navigate("/")
-  };
+  }
 
   return (
     <>
@@ -278,7 +277,7 @@ const AddEditPost = ({ user, setActive }) => {
           </form>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default AddEditPost;
+export default AddEditPost

@@ -5,7 +5,7 @@ import { signOut } from "firebase/auth"
 import { matchPath } from 'react-router'
 
 import Navbar from "./components/Navbar/Navbar"
-import AddEditPost from "./pages/AddEditPost/AddEditPost"
+import AddEditPost from "./pages/AddEditPost"
 import { Login } from './pages/Login/index'
 import { Home } from "./pages/Home"
 
@@ -37,12 +37,12 @@ export default function App() {
 
   return (
     <div className="App">
-      {user || !!matchPath("/", location.pathname) ? <Navbar
+      {!!matchPath("/login", location.pathname) ? <></> : <Navbar
         setActive={setActive}
         active={active}
         user={user}
         handleLogout={handleLogout}
-      /> : <></>}
+      />}
       <Routes>
         <Route
           path="/"
@@ -51,13 +51,13 @@ export default function App() {
         <Route
           path="/create"
           element={ 
-            user ? <AddEditPost user={user} /> : <Navigate to="/" />
+            <AddEditPost user={user} />
           }
         />
         <Route
           path="/update/:id"
           element={ 
-            <AddEditPost user={user} setActive={setActive} /> 
+            <AddEditPost user={user} setActive={setActive} />
           }
         />
         <Route 
@@ -66,5 +66,5 @@ export default function App() {
         />
       </Routes>
     </div>
-  );
+  )
 }
