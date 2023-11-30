@@ -7,7 +7,7 @@ import { matchPath } from 'react-router'
 import Navbar from "./components/Navbar/Navbar"
 import AddEditPost from "./pages/AddEditPost"
 import { Login } from './pages/Login/index'
-import { Home } from "./pages/Home"
+import Home from "./pages/Home";
 
 import './styles/global.scss'
 

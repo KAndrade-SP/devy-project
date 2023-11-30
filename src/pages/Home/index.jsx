@@ -10,18 +10,14 @@ import {
     where,
     startAfter,
   } from "firebase/firestore"
-import { db } from "../firebase"
+import { db } from "../../services/firebase"
 import { toast } from "react-toastify"
 import { useEffect, useState } from 'react'
-import { useLocation } from "react-router-dom"
 
 import PostSection from "../../components/PostSection/PostSection"
 
-function useQuery() {
-    return new URLSearchParams(useLocation().search);
-}
 
-const Home = ({ setActive, user, active }) => {
+const Home = () => {
 
     const [loading, setLoading] = useState(true)
     const [blogs, setBlogs] = useState([])
@@ -46,11 +42,15 @@ const Home = ({ setActive, user, active }) => {
         }
       }, [])
 
+    console.log("blogs", blogs)
+
     return (
         <>
             <div>
-                <PostSection></PostSection>
+                <PostSection blogs={blogs}></PostSection>
             </div>
         </>
     )
 }
+
+export default Home;
