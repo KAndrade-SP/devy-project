@@ -72,7 +72,7 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
 
             
 
-            <div onClick={handleClick} className={toggle?'absolute z-10 w-full px-4 md:hidden':'hidden'}>
+            <div onClick={handleClick} className={toggle?'absolute mobile-dropdown hover:text-[#a0a2ab] z-10 w-full px-4 md:hidden':'hidden'}>
                 <ul>
                     { userData ?
                         <a className='flex pl-4 pt-2 items-center'>

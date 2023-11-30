@@ -46,9 +46,12 @@ const Home = () => {
 
     return (
         <>
-            <div>
+            <main className="l-main">
+              {/* --===== POSTS SECTION =====-- */}
+              <section className="posts" id="posts">
                 <PostSection blogs={blogs}></PostSection>
-            </div>
+              </section>
+            </main>
         </>
     )
 }
