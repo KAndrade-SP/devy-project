@@ -38,9 +38,11 @@ const AddEditPost = ({ user, setActive }) => {
   const [form, setForm] = useState(initialState)
   const [file, setFile] = useState(null)
   const [progress, setProgress] = useState(null)
+
   const { id } = useParams()
-  const navigate = useNavigate()
   const { title, tags, category, trending, description } = form
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const uploadFile = () => {
@@ -89,7 +91,7 @@ const AddEditPost = ({ user, setActive }) => {
   }, [id])
 
   const getPostDetail = async () => {
-    const docRef = doc(db, "posts", id)
+    const docRef = doc(db, "blogs", id)
     const snapshot = await getDoc(docRef)
     if (snapshot.exists()) {
       setForm({ ...snapshot.data() })
@@ -271,7 +273,7 @@ const AddEditPost = ({ user, setActive }) => {
                   type="submit"
                   disabled={progress !== null && progress < 100}
                 >
-                {id ? "Atualizar" : "Enviar"}
+                  {id ? "Atualizar" : "Enviar"}
                 </button>
               </div>
           </form>

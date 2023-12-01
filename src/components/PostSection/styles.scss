@@ -1,0 +1,12 @@
+.post__cards {
+    background-color: var(--background-light);
+    border-color: hsl(233, 9%, 59%);
+}
+
+.post__icons {
+    cursor: pointer;
+
+    &:hover {
+        color: hsl(233, 9%, 59%);
+    }
+}

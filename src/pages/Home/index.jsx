@@ -12,12 +12,12 @@ import {
   } from "firebase/firestore"
 import { db } from "../../services/firebase"
 import { toast } from "react-toastify"
-import { useEffect, useState } from 'react'
+import React, { useState, useEffect } from "react"
 
 import PostSection from "../../components/PostSection/PostSection"
 
 
-const Home = () => {
+const Home = ({ setActive, user, active }) => {
 
     const [loading, setLoading] = useState(true)
     const [blogs, setBlogs] = useState([])
@@ -40,7 +40,19 @@ const Home = () => {
         return () => {
           unsub()
         }
-      }, [])
+    }, [])
+
+    const handleDelete = async (id) => {
+      if (window.confirm("Você tem certeza que deseja excluir este post?")) {
+        try {
+          setLoading(true)
+          await deleteDoc(doc(db, "blogs", id))
+          setLoading(false)
+        } catch(err) {
+          console.log(err)
+        }
+      }
+    }
 
     console.log("blogs", blogs)
 
@@ -49,7 +61,11 @@ const Home = () => {
             <main className="l-main">
               {/* --===== POSTS SECTION =====-- */}
               <section className="posts" id="posts">
-                <PostSection blogs={blogs}></PostSection>
+                <PostSection 
+                  blogs={blogs} 
+                  user={user} 
+                  handleDelete={handleDelete}
+                />
               </section>
             </main>
         </>
