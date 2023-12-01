@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
-import { List, X, House, GraduationCap, Question, Info, PaperPlaneTilt, SignOut, User } from "@phosphor-icons/react"
+import { Link } from "react-router-dom"
+import { List, X, Plus, House, GraduationCap, Question, Info, PaperPlaneTilt, SignOut, User } from "@phosphor-icons/react"
 
 import './styles.scss'
 
@@ -53,6 +54,12 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                                         <User size={24}/>
                                         <li className='p-4'>Perfil</li>
                                     </div>
+                                    <Link to={`/create`}>
+                                        <div className='flex pl-4 pt-2 items-center nav-link'>
+                                            <Plus size={24}/>
+                                            <li className='p-4'>Criar post</li>
+                                        </div>   
+                                    </Link>
                                     <div className='flex pl-4 pt-2 items-center nav-link' onClick={handleLogout}>
                                         <SignOut size={24}/>
                                         <li className='p-4'>Sair</li>
